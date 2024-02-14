@@ -1,0 +1,8 @@
+.terraform.lock.hcl
+.terraform
+backend.tf
+
+tf.json
+tf.plan
+
+.DS_Store
