@@ -1,5 +1,7 @@
 # Contact Form Terraform Template
 
+This is a simple contact form web app. Once the contact form has been submitted, the details on the form are emailed to the owner. This app uses AWS and terraform.
+
 ## Flow Diagram
 
 User interacts with contact form on webpage hosted in S3 bucket. Submitting contact form sends post request which triggers the lambda. The lambda sends an email to website owner with contents of contact form using SES.
