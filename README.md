@@ -37,3 +37,10 @@ SES Identities
 
 Email
 ![gmail screenshot](./images/email.png)
+
+# TODO
+
+- [ ] codify
+- [ ] variablise
+- [ ] use modules
+- [ ] github actions to upload lambda code and/or html changes
