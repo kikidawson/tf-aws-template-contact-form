@@ -1,5 +1,7 @@
 .terraform.lock.hcl
 .terraform
+terraform.tfstate*
+
 backend.tf
 
 tf.json
