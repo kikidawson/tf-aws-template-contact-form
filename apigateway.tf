@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "this" {
-  name = "cmf-contact-me-form"
+  name        = "cmf-contact-me-form"
   description = "This is the REST API for the contact me form."
 
   body = file("${path.module}/src/openapi.yaml")
