@@ -1,9 +1,8 @@
 resource "aws_s3_bucket" "this" {
-  bucket = "cmf-contact-me-form-app"
+  bucket = "${var.prefix}-contact-me-form-app"
 
   tags = {
-    Name        = "cmf-contact-me-form-app"
-    Environment = "dev"
+    Name = "${var.prefix}-contact-me-form-app"
   }
 }
 

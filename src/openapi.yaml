@@ -56,7 +56,7 @@ paths:
         httpMethod: "POST"
         payloadFormatVersion: "1.0"
         type: "AWS"
-        uri: "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:534750600864:function:cmf-contact-me-form/invocations"
+        uri: ${lambda_uri}
         responses:
           default:
             statusCode: '200'

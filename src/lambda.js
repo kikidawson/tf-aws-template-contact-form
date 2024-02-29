@@ -1,12 +1,15 @@
+let email = process.env.EMAIL_ADDRESS
+let region = process.env.REGION
+
 var aws = require("aws-sdk")
-var ses = new aws.SES({ region: "eu-west-2" })
- 
+var ses = new aws.SES({ region: region })
+
  exports.handler = async function (event, context) {
     console.log('Received event:', event);
     var params = {
         Destination: {
             ToAddresses: [
-                "kikiadawson@gmail.com"
+                email
             ]
         },
         Message: {
@@ -21,7 +24,7 @@ var ses = new aws.SES({ region: "eu-west-2" })
                 Charset: 'UTF-8'
             }
         },
-        Source: "kikiadawson@gmail.com"
+        Source: email
     };
 
     return ses.sendEmail(params).promise();

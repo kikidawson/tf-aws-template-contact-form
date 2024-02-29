@@ -1,8 +1,10 @@
 resource "aws_api_gateway_rest_api" "this" {
-  name        = "cmf-contact-me-form"
+  name        = "${var.prefix}-contact-me-form"
   description = "This is the REST API for the contact me form."
 
-  body = file("${path.module}/src/openapi.yaml")
+  body = templatefile("${path.module}/src/openapi.yaml", {
+    "lambda_uri" = "${aws_lambda_function.this.invoke_arn}"
+  })
 
   endpoint_configuration {
     types = ["REGIONAL"]
@@ -24,5 +26,5 @@ resource "aws_api_gateway_deployment" "this" {
 resource "aws_api_gateway_stage" "this" {
   deployment_id = aws_api_gateway_deployment.this.id
   rest_api_id   = aws_api_gateway_rest_api.this.id
-  stage_name    = "02"
+  stage_name    = var.stage_name
 }

@@ -1,11 +1,11 @@
 resource "aws_iam_role" "lambda" {
-  name               = "cmf-lambda"
+  name               = "${var.prefix}-lambda"
   assume_role_policy = data.aws_iam_policy_document.trust_policy.json
 }
 
 resource "aws_iam_policy" "lambda_ses" {
-  name        = "cmf-lambda-ses"
-  description = "Allow CMF lambda to send emails via SES."
+  name        = "${var.prefix}-lambda-ses"
+  description = "Allow ${var.prefix} lambda to send emails via SES."
   policy      = data.aws_iam_policy_document.lambda_ses.json
 }
 
@@ -20,13 +20,20 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_lambda_function" "this" {
-  function_name    = "cmf-contact-me-form"
+  function_name    = "${var.prefix}-contact-me-form"
   description      = "This lambda sends an email via SES to owner with details from contact form."
-  filename         = "${path.module}/src/cmf-lambda.zip"
+  filename         = "${path.module}/src/lambda.zip"
   role             = aws_iam_role.lambda.arn
-  handler          = "cmf-lambda.handler"
+  handler          = "lambda.handler"
   source_code_hash = data.archive_file.lambda.output_base64sha256
-  runtime          = "nodejs16.x"
+  runtime          = var.lambda_runtime
+
+  environment {
+    variables = {
+      REGION        = var.region
+      EMAIL_ADDRESS = var.email_address
+    }
+  }
 }
 
 resource "aws_lambda_permission" "api_gateway" {

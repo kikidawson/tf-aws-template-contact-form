@@ -41,6 +41,6 @@ data "aws_iam_policy_document" "lambda_ses" {
 
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "./src/cmf-lambda.js"
-  output_path = "./src/cmf-lambda.zip"
+  source_file = "./src/lambda.js"
+  output_path = "./src/lambda.zip"
 }
