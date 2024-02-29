@@ -7,24 +7,6 @@ resource "aws_s3_bucket" "this" {
   }
 }
 
-data "aws_iam_policy_document" "allow_get_put_object" {
-  statement {
-    sid = "AllowReadAndWrite"
-
-    principals {
-      type        = "AWS"
-      identifiers = ["*"]
-    }
-
-    actions = [
-      "s3:GetObject",
-      "s3:PutObject",
-    ]
-
-    resources = ["${aws_s3_bucket.this.arn}/*"]
-  }
-}
-
 resource "aws_s3_bucket_policy" "allow_get_put_object" {
   bucket = aws_s3_bucket.this.id
   policy = data.aws_iam_policy_document.allow_get_put_object.json

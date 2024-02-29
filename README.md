@@ -40,7 +40,7 @@ Email
 
 # TODO
 
-- [ ] codify
+- [X] codify
 - [ ] variablise
 - [ ] use modules
 - [ ] github actions to upload lambda code and/or html changes

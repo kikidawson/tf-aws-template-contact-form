@@ -1,0 +1,64 @@
+openapi: 3.0.1
+
+info:
+  title: Contact Me Form API
+  description: API defining the operations available in the Contact Me Form API
+  version: 0.1.0
+
+paths:
+  /submit:
+    options:
+      summary: enabling CORS
+      description: options header for enabling CORS
+      responses:
+        200:
+          description: Okay
+          headers:
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: "OPTIONS"
+        payloadFormatVersion: "1.0"
+        type: "mock"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: |
+                {}
+
+    post:
+      summary: Submits contact me form
+      description: Submits contact me form to the registered email.
+      responses:
+        200:
+          description: Okay
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        httpMethod: "POST"
+        payloadFormatVersion: "1.0"
+        type: "AWS"
+        uri: "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:534750600864:function:cmf-contact-me-form/invocations"
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
