@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "allow_get_put_object" {
       "s3:PutObject",
     ]
 
-    resources = ["${aws_s3_bucket.this.arn}/*"]
+    resources = ["${module.s3.arn}/*"]
   }
 }
 

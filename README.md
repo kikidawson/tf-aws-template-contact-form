@@ -42,5 +42,5 @@ Email
 
 - [X] codify
 - [x] variablise
-- [ ] use modules
+- [x] use S3 module
 - [ ] github actions to upload lambda code and/or html changes
