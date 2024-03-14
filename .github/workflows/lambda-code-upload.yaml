@@ -1,6 +1,7 @@
 name: Lambda Code Upload
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
