@@ -29,4 +29,3 @@ var ses = new aws.SES({ region: region })
 
     return ses.sendEmail(params).promise();
  };
-
