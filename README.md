@@ -43,4 +43,5 @@ Email
 - [X] codify
 - [x] variablise
 - [x] use S3 module
-- [ ] github actions to upload lambda code and/or html changes
+- [ ] github actions to upload lambda code once pushed to main
+- [ ] PR checks once pr raised/changed

@@ -1,0 +1,29 @@
+name: Lambda Code Upload
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/lambda.js'
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
+        role-session-name: cicd-admin
+        aws-region: eu-west-2
+
+    - name: Print changed files
+      run: |
+        echo "List of changed files:" 
+        echo $(git diff --name-only HEAD^ HEAD)
