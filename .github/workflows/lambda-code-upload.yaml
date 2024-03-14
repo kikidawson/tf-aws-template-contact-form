@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  checks:
+  upload:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -27,7 +27,7 @@ jobs:
         role-session-name: cicd-admin
         aws-region: eu-west-2
 
-    - name: Print changed files
+    - name: Get lambda function
       run: |
-        echo "List of changed files:" 
-        echo $(git diff --name-only HEAD^ HEAD)
+        echo "Details of lambda:" 
+        echo $(aws lambda get-function --function-name cmf-contact-me-form --region eu-west-2)
