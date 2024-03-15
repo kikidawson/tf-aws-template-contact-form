@@ -44,4 +44,5 @@ Email
 - [x] variablise
 - [x] use S3 module
 - [ ] github actions to upload lambda code once pushed to main
+  - [ ] stop tf from uploading changing to lambda code
 - [ ] PR checks once pr raised/changed
