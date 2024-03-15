@@ -5,8 +5,8 @@ on:
     types: ["opened", "synchronize", "auto_merge_enabled"]
 
 permissions:
-      id-token: write
-      contents: read
+  id-token: write
+  contents: read
 
 jobs:
   checks:
@@ -25,10 +25,21 @@ jobs:
           role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
           role-session-name: cicd-admin
           aws-region: eu-west-2
+      # - name: configure git token
+      #   run: |
+      #     git config --local --remove-section http."https://github.com/"
+      #     git config --global url."https://foo:${GH_TOKEN}@github.com/your-org".insteadOf "https://github.com/your-org"
+      #     git config --global url."git@github.com:".insteadOf "https://github.com/"
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: terraform format
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           terraform init
           terraform fmt -list=false -check
       - name: terraform plan
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           terraform plan
