@@ -51,3 +51,4 @@ Email
 - [ ] modulise lambda
   - [ ] trigger lambda code deployment after creation
 - [ ] modulise apigateway
+- [ ] add template to PRs
