@@ -20,13 +20,12 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_lambda_function" "this" {
-  function_name    = "${var.prefix}-contact-me-form"
-  description      = "This lambda sends an email via SES to owner with details from contact form."
-  filename         = "${path.module}/src/lambda.zip"
-  role             = aws_iam_role.lambda.arn
-  handler          = "lambda.handler"
-  source_code_hash = data.archive_file.lambda.output_base64sha256
-  runtime          = var.lambda_runtime
+  function_name = "${var.prefix}-contact-me-form"
+  description   = "This lambda sends an email via SES to owner with details from contact form."
+  filename      = "${path.module}/src/init.zip"
+  role          = aws_iam_role.lambda.arn
+  handler       = "lambda.handler"
+  runtime       = var.lambda_runtime
 
   environment {
     variables = {
