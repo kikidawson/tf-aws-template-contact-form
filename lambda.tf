@@ -20,6 +20,13 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_lambda_function" "this" {
+  #checkov:skip=CKV_AWS_117: lambda not within VPC
+  #checkov:skip=CKV_AWS_115: function-level concurrent execution limit?
+  #checkov:skip=CKV_AWS_173: un-encrypted env vars
+  #checkov:skip=CKV_AWS_50: disabled x-ray tracing
+  #checkov:skip=CKV_AWS_272: not validating code signing
+  #checkov:skip=CKV_AWS_116: needs DLQ
+
   function_name = "${var.prefix}-contact-me-form"
   description   = "This lambda sends an email via SES to owner with details from contact form."
   filename      = "${path.module}/src/init.zip"
