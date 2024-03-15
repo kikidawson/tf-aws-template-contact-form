@@ -43,6 +43,9 @@ Email
 - [X] codify
 - [x] variablise
 - [x] use S3 module
-- [ ] github actions to upload lambda code once pushed to main
-  - [ ] stop tf from uploading changing to lambda code
+- [x] github actions to upload lambda code once pushed to main
+  - [x] stop tf from uploading changing to lambda code
 - [ ] PR checks once pr raised/changed
+- [ ] modulise lambda
+  - [ ] trigger lambda code deployment after creation
+- [ ] modulise apigateway
