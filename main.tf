@@ -1,5 +1,5 @@
 module "s3" {
-  source = "git@github.com:kikidawson/tf-aws-module-s3.git"
+  source = "git::https://github.com/kikidawson/tf-aws-module-s3.git?ref=main"
 
   name = "${var.prefix}-contact-me-form-app"
 
