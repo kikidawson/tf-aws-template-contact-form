@@ -24,16 +24,11 @@ terraform plan -out=tfplan
 terraform apply -auto-approve tfplan
 ```
 
-3. Upload hmtl to S3 bucket
-```
-aws s3 cp src/index.html s3://${PREFIX}-contact-me-form-app/index.html
-```
+3. Upload hmtl to S3 bucket by manually triggering the [HTML Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/html-code-upload.yaml)
 
-4. Upload backend code to lambda function
-```
-zip -j ./src/lambda.zip ./src/lambda.js
-aws lambda update-function-code --function-name ${PREFIX}-contact-me-form --zip-file fileb://src/lambda.zip --region ${REGION}
-```
+4. Upload backend code to lambda function by manually triggering the [Lambda Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/lambda-code-upload.yaml)
+
+5. Navigate to the [website](http://cmf-contact-me-form-app.s3-website.eu-west-2.amazonaws.com/), enter details and sumbit form, email should be recieved to the address provided in terraform.tfvars.
 
 ### AWS Management Console Screenshots
 Webpage
@@ -65,3 +60,7 @@ SES Identities
 
 Email
 ![gmail screenshot](./images/email.png)
+
+## TODO
+
+See [GitHub issues](https://github.com/kikidawson/tf-aws-template-contact-form/issues).
