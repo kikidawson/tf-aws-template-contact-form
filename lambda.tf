@@ -30,7 +30,7 @@ resource "aws_lambda_function" "this" {
   function_name = "${var.prefix}-contact-me-form"
   description   = "This lambda sends an email via SES to owner with details from contact form."
   filename      = "${path.module}/src/init.zip"
-  role                = aws_iam_role.lambda.arn
+  role          = aws_iam_role.lambda.arn
   handler       = "lambda.handler"
   runtime       = var.lambda_runtime
 
