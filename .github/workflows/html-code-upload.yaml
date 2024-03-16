@@ -1,4 +1,4 @@
-name: Lambda Code Upload
+name: HTML Code Upload
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'src/lambda.js'
+      - 'src/index.html'
 
 permissions:
   id-token: write
@@ -28,7 +28,6 @@ jobs:
         role-session-name: cicd-admin
         aws-region: eu-west-2
 
-    - name: Upload lambda code
+    - name: Upload HTML code
       run: |
-        zip -j ./src/lambda.zip ./src/lambda.js
-        aws lambda update-function-code --function-name cmf-contact-me-form --zip-file fileb://src/lambda.zip --region eu-west-2
+        aws s3 cp ./src/index.html s3://cmf-contact-me-form-app/index.html

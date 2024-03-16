@@ -9,6 +9,32 @@ Website --> http://cmf-contact-me-form-app.s3-website.eu-west-2.amazonaws.com/
 User interacts with contact form on webpage hosted in S3 bucket. Submitting contact form sends post request which triggers the lambda. The lambda sends an email to website owner with contents of contact form using SES.
 ![flow diagram](./diagrams/Untitled.png)
 
+## Initial Deployment
+
+1. Clone repo and update variables in terraform.tfvars
+```
+git clone git@github.com:kikidawson/tf-aws-template-contact-form.git
+cd tf-aws-template-contact-form
+```
+
+2. Deploy resources via terraform.
+```
+terraform init
+terraform plan -out=tfplan
+terraform apply -auto-approve tfplan
+```
+
+3. Upload hmtl to S3 bucket
+```
+aws s3 cp src/index.html s3://${PREFIX}-contact-me-form-app/index.html
+```
+
+4. Upload backend code to lambda function
+```
+zip -j ./src/lambda.zip ./src/lambda.js
+aws lambda update-function-code --function-name ${PREFIX}-contact-me-form --zip-file fileb://src/lambda.zip --region ${REGION}
+```
+
 ### AWS Management Console Screenshots
 Webpage
 ![webpage screenshot](./images/webpage.png)
