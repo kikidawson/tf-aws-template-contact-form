@@ -12,6 +12,6 @@ resource "github_branch_protection" "main" {
 
   required_pull_request_reviews {
     require_last_push_approval      = false
-    required_approving_review_count = 1
+    required_approving_review_count = 0
   }
 }
