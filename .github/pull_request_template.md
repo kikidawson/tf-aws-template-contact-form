@@ -10,9 +10,11 @@ Enter description of changes.
 
 # Details of Testing
 
-# Revelant Screenshots
+List tests.
 
-Add any revelant screenshots.
+# Relevant Screenshots
+
+Add any relevant screenshots.
 
 # AOB
 
