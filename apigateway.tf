@@ -5,7 +5,7 @@ resource "aws_api_gateway_rest_api" "this" {
   description = "This is the REST API for the contact me form."
 
   body = templatefile("${path.module}/src/openapi.yaml", {
-    "lambda_uri" = "${aws_lambda_function.this.invoke_arn}"
+    "lambda_uri" = "${module.lambda.invoke_arn}"
   })
 
   endpoint_configuration {

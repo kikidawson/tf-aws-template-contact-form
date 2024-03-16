@@ -15,3 +15,24 @@ module "s3" {
 
   website_file_name = "index.html"
 }
+
+module "lambda" {
+  source = "../tf-aws-module-lambda"
+
+  name                   = "${var.prefix}-contact-me-form"
+  description            = "This lambda sends an email via SES to owner with details from contact form."
+  additional_policy_json = data.aws_iam_policy_document.lambda_ses.json
+
+  environment_variables = {
+    REGION        = var.region
+    EMAIL_ADDRESS = var.email_address
+  }
+}
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = module.lambda.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
+}
