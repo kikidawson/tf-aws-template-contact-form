@@ -7,7 +7,7 @@ module "s3" {
   sse_algorithm          = "AES256"
 
   block_public_acls       = false
-  block_public_policy                        = false
+  block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
 
