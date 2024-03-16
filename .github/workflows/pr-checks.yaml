@@ -27,8 +27,11 @@ jobs:
           aws-region: eu-west-2
       - name: terraform format
         run: |
+          echo "initialising terraform"
           terraform init
-          terraform fmt -list=false -check
+          echo "checking terraform format"
+          terraform fmt -check
+          echo ${terraform fmt -check}
       - name: terraform plan
         run: |
           terraform plan

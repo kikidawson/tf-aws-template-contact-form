@@ -48,6 +48,7 @@ Email
 - [x] github actions to upload lambda code once pushed to main
   - [x] stop tf from uploading changing to lambda code
 - [ ] PR checks once pr raised/changed
+  - failing at tf fmt
 - [ ] modulise lambda
   - [ ] trigger lambda code deployment after creation
 - [ ] modulise apigateway
