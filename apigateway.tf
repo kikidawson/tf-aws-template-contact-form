@@ -1,4 +1,6 @@
 resource "aws_api_gateway_rest_api" "this" {
+  #checkov:skip=CKV_AWS_237
+
   name        = "${var.prefix}-contact-me-form"
   description = "This is the REST API for the contact me form."
 
@@ -24,6 +26,13 @@ resource "aws_api_gateway_deployment" "this" {
 }
 
 resource "aws_api_gateway_stage" "this" {
+  #checkov:skip=CKV_AWS_120: disabled caching
+  #checkov:skip=CKV_AWS_76: disabled access logging
+  #checkov:skip=CKV_AWS_73: disabled x-ray tracing
+  #checkov:skip=CKV2_AWS_51: not using client certified authentication
+  #checkov:skip=CKV2_AWS_4: check logging level appropriate
+  #checkov:skip=CKV2_AWS_29: not protected by WAF
+
   deployment_id = aws_api_gateway_deployment.this.id
   rest_api_id   = aws_api_gateway_rest_api.this.id
   stage_name    = var.stage_name

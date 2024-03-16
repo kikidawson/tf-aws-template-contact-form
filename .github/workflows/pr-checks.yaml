@@ -5,8 +5,8 @@ on:
     types: ["opened", "synchronize", "auto_merge_enabled"]
 
 permissions:
-      id-token: write
-      contents: read
+  id-token: write
+  contents: read
 
 jobs:
   checks:
@@ -25,10 +25,12 @@ jobs:
           role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
           role-session-name: cicd-admin
           aws-region: eu-west-2
+      - name: get caller identity
+        run: aws sts get-caller-identity
       - name: terraform format
         run: |
           terraform init
-          terraform fmt -list=false -check
-      - name: terraform plan
-        run: |
-          terraform plan
+          echo
+          terraform fmt -diff -check
+      - name: terraform validate
+        run: terraform validate

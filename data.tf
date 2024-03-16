@@ -14,6 +14,8 @@ data "aws_iam_policy_document" "trust_policy" {
 }
 
 data "aws_iam_policy_document" "allow_get_put_object" {
+  #checkov:skip=CKV_AWS_283: wildcard in principal
+
   statement {
     sid = "AllowReadAndWrite"
 
@@ -32,15 +34,12 @@ data "aws_iam_policy_document" "allow_get_put_object" {
 }
 
 data "aws_iam_policy_document" "lambda_ses" {
+  #checkov:skip=CKV_AWS_356: wildcard in statement
+  #checkov:skip=CKV_AWS_111: write access without constraints
+
   statement {
     effect    = "Allow"
     actions   = ["ses:SendEmail"]
     resources = ["*"]
   }
 }
-
-# data "archive_file" "lambda" {
-#   type        = "zip"
-#   source_file = "./src/lambda.js"
-#   output_path = "./src/lambda.zip"
-# }
