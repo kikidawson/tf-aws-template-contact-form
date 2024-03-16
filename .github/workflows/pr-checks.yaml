@@ -30,6 +30,7 @@ jobs:
       - name: terraform format
         run: |
           terraform init
-          terraform fmt -list=false -check
+          echo
+          terraform fmt -diff -check
       - name: terraform validate
         run: terraform validate
