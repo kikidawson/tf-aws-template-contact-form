@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.29"
     }
+    github = {
+      source = "integrations/github"
+      version = "6.1.0"
+    }
   }
 }
 
@@ -17,4 +21,8 @@ provider "aws" {
       ManagedBy = "terraform"
     }
   }
+}
+
+provider "github" {
+  owner = "kikidawson"
 }
