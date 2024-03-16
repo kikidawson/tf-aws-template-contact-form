@@ -17,7 +17,7 @@ module "s3" {
 }
 
 module "lambda" {
-  source = "../tf-aws-module-lambda"
+  source = "git::https://github.com/kikidawson/tf-aws-module-lambda.git?ref=main"
 
   name                   = "${var.prefix}-contact-me-form"
   description            = "This lambda sends an email via SES to owner with details from contact form."
