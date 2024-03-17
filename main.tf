@@ -34,5 +34,18 @@ resource "aws_lambda_permission" "api_gateway" {
   action        = "lambda:InvokeFunction"
   function_name = module.lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.this.execution_arn}/*/*"
+  source_arn    = "${module.apigateway.execution_arn}/*/*"
+}
+
+module "apigateway" {
+  source = "git::https://github.com/kikidawson/tf-aws-module-apigateway.git?ref=main"
+
+  name              = "${var.prefix}-contact-me-form"
+  description       = "This is the REST API for the contact me form."
+  stage_name        = var.stage_name
+  openapi_yaml_file = "${path.module}/src/openapi.yaml"
+
+  openapi_yaml_variables = {
+    "lambda_uri" = "${module.lambda.invoke_arn}"
+  }
 }
