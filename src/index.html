@@ -4,7 +4,7 @@
     <script>
       function submitToAPI(e) {
         e.preventDefault();
-        var URL = "https://lhawlo0kge.execute-api.eu-west-2.amazonaws.com/02/submit";
+        var URL = "https://bvet2xnu1a.execute-api.eu-west-2.amazonaws.com/02/submit";
         var name = $("#name-input").val();
         var email = $("#email-input").val();
         var message = $("#description-input").val();
@@ -16,7 +16,7 @@
 
         $.ajax({
           type: "POST",
-          url : "https://lhawlo0kge.execute-api.eu-west-2.amazonaws.com/02/submit",
+          url : "https://bvet2xnu1a.execute-api.eu-west-2.amazonaws.com/02/submit",
           dataType: "json",
           crossDomain: "true",
           contentType: "application/json; charset=utf-8",

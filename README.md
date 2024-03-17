@@ -24,11 +24,13 @@ terraform plan -out=tfplan
 terraform apply -auto-approve tfplan
 ```
 
-3. Upload hmtl to S3 bucket by manually triggering the [HTML Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/html-code-upload.yaml)
+3. Add the apigateway's invoke URL to the html file with `/submit` as a suffix. This value will be listed as the `apigateway_stage_invoke_url` output once terraform apply has completed.
 
-4. Upload backend code to lambda function by manually triggering the [Lambda Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/lambda-code-upload.yaml)
+4. Upload hmtl to S3 bucket by manually triggering the [HTML Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/html-code-upload.yaml)
 
-5. Navigate to the [website](http://cmf-contact-me-form-app.s3-website.eu-west-2.amazonaws.com/), enter details and sumbit form, email should be recieved to the address provided in terraform.tfvars.
+5. Upload backend code to lambda function by manually triggering the [Lambda Code Upload workflow](https://github.com/kikidawson/tf-aws-template-contact-form/actions/workflows/lambda-code-upload.yaml)
+
+6. Navigate to the [website](http://cmf-contact-me-form-app.s3-website.eu-west-2.amazonaws.com/), enter details and sumbit form, email should be recieved to the address provided in terraform.tfvars.
 
 ### AWS Management Console Screenshots
 Webpage
